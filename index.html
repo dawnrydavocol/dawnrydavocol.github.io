@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <title>Tri Dawn</title>
+  <script type="module" crossorigin src="/assets/index.004b37d2.js"></script>
+  <link rel="modulepreload" href="/assets/vendor.c4724e33.js">
+  <link rel="stylesheet" href="/assets/index.543c4c20.css">
+</head>
+
+<body>
+  <header class="fixed w-screen h-32 top-0 left-0 z-50 flex  text-gray-50 pointer-events-none">
+    <!-- <div id="main-header__logo-header" class="flex justify-center ml-12 flex-col ">
+      <div class="flex items-star flex-col pointer-events-auto">
+        <p class="font-thin ">Quantum World of:</p>
+        <a href="" class="text-xl font-medium block mt-2">DAWNRY DAVOCOL</a>
+      </div>
+    </div> -->
+  </header>
+  <div class="w-screen h-screen relative">
+    <canvas id="main-canvas" class="w-full h-full top-0 left-0 absolute"></canvas>
+
+    <!-- Container for text to display starts here. -->
+    <div id="text-story_container"
+      class="w-full h-full top-0 left-0 absolute flex justify-center items-center  pointer-events-none text-white mix-blend-difference">
+      <div class="min-w-[720px] w-[90%] max-w-[2400px] min-h-[420px] h-[720px] flex flex-co">
+        <div id="text-story__left-container" class="flex-1 flex justify-center items-center">
+          <!-- -->
+          <div id="text-story__first-story" class="w-[60%] ">
+            <h2 id="text-story__first-story-h2" class="text-3xl font-bold">WHO AM I?</h2>
+            <p id="text-story__first-story-p" class="font-normal text-xl"></p>
+          </div>
+        </div>
+
+        <div id="text-story__right-container" class="flex-1 flex justify-center items-center">
+          <!-- -->
+          <div id="text-story__second-story" class="w-[60%] ">
+            <h2 id="text-story__second-story-h2" class="text-3xl font-bold mb-4">WHAT ARE MY SKILLS?</h2>
+            <p id="text-story__second-story-p1" class="font-thin text-xl">◉ 5 Years of Android Native Development
+              Skills.
+            </p>
+            <p id="text-story__second-story-p2" class="font-thin text-xl">◉ 3 Years of Web Development Skills.</p>
+            <p id="text-story__second-story-p3" class="font-thin text-xl">◉ I do Video Editing and Graphic Designing.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="bottom-navigation"
+      class="absolute z-50 bottom-0 left-0 h-24 w-full flex  items-center px-8 mix-blend-difference">
+      <nav class="flex-2 flex items-start flex-col mr-4">
+        <a href="" class="flex justify-center items-center rounded-full text-white">
+          <span>.</span>
+        </a>
+      </nav>
+      <nav class="flex-1 flex justify-center items-center">
+        <input type="range" step="0.001" min="0" max="52" value="0" id="animation-timeline-slider"
+          class="slider w-full">
+      </nav>
+      <nav class="flex-2 flex items-end flex-col ml-4">
+        <a href="" class="w-12 h-12 flex justify-center items-center rounded-full circular-menu-btn">
+          <i class="ri-menu-line text-2xl"></i>
+        </a>
+      </nav>
+
+    </div>
+  </div>
+  
+  <script type="x-shader/x-vertex" id="vertexshader">
+
+    varying vec2 vUv;
+
+    void main() {
+
+      vUv = uv;
+
+      gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+    }
+
+  </script>
+
+  <script type="x-shader/x-fragment" id="fragmentshader">
+
+    uniform sampler2D baseTexture;
+    uniform sampler2D bloomTexture;
+
+    varying vec2 vUv;
+
+    void main() {
+
+      gl_FragColor = ( texture2D( baseTexture, vUv ) + vec4( 1.0 ) * texture2D( bloomTexture, vUv ) );
+
+    }
+
+  </script>
+</body>
+
+</html>
